@@ -1,3 +1,19 @@
 APPROACH:
 
 learn openCV and work towards a script that does skeletonization
+
+
+
+ALGORITHMS THAT WE CAN USE
+
+## extract relevant parts for making pose estimation possible for just us
+https://github.com/CMU-Perceptual-Computing-Lab/openpose
+
+## fun one, might be useable
+https://github.com/JostineHo/mememoji
+
+## face recognition ones:
+https://github.com/petercunha/Emotion
+https://github.com/SamVenkatesh/FakeBlock
+https://github.com/oarriaga/face_classification
+
