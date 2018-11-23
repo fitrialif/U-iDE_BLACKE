@@ -1,8 +1,6 @@
 APPROACH:
 
-learn openCV and work towards a script that does skeletonization
-
-
+FETCH ALGORITHMS SO THAT WE CAN BUILD THE PIPELINE
 
 ALGORITHMS THAT WE CAN USE
 
@@ -16,4 +14,3 @@ https://github.com/JostineHo/mememoji
 https://github.com/petercunha/Emotion
 https://github.com/SamVenkatesh/FakeBlock
 https://github.com/oarriaga/face_classification
-
