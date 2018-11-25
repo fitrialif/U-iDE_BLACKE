@@ -95,12 +95,11 @@
 \begin{minipage}{4in} \includegraphics[height=2.5in]{fig/SFU} \end{minipage}&
 \centering \begin{minipage}{25in}
 \begin{center}
-{\color{DarkRed2}{\Huge\bf A Discriminative Latent Model of Object Classes and Attributes}}\\
-{\color{DarkBlue}{\LARGE Yang Wang and Greg Mori}}\\
-{\color{DarkBlue}{\large Vision and Media Lab, Simon Fraser University, Burnaby, BC, Canada}}\\
+{\color{DarkRed2}{\Huge\bf BLACK: Body Language Affect Classification Kernel}}\\
+{\color{DarkBlue}{\LARGE Undergrad-ient Descent Expedition}}\\
+{\color{DarkBlue}{\large Jack (Xiang) Zhou, James Bie, Karan Aujla, Eric Gao, Insoo Rhee}}\\
 \end{center}
 \end{minipage} &
-\begin{minipage}{4in} \includegraphics[height=2.5in]{fig/vml} \end{minipage}
 \end{tabularx}
 
 %% Column 1
@@ -162,13 +161,6 @@
 &&{\rm s.t.} \max_{\mybf{h}}\mybf{w}^\top\Phi(\mybf{x}^{(n)},\mybf{h},y^{(n)})-\max_{\mybf{h}}\mybf{w}^\top\Phi(\mybf{x}^{(n)},\mybf{h},y) \nonumber\\
 &&\ \ \ \ \ \ \geq \Delta(y,y^{(n)})-\xi^{(n)}, \forall n, \forall y\nonumber
 \end{eqnarray}
-
-%{\bf Learning with observed attributes}:
-%\begin{eqnarray}
-%&&\min_{\mybf{w},\xi} \beta||\mybf{w}||^{2}+\sum_{n=1}^{N}\xi^{(n)}\nonumber\\
-%&&{\rm s.t.} \mybf{w}^\top\Phi(\mybf{x}^{(n)},\mybf{h}^{(n)},y^{(n)})-\max_{\mybf{h}}\mybf{w}^\top\Phi(\mybf{x}^{(n)},\mybf{h},y) \nonumber\\
-%&&\ \ \ \ \ \ \geq \Delta(y,y^{(n)})-\xi^{(n)}, \forall n, \forall y\nonumber
-%\end{eqnarray}
 
 Another choice is to use the ground-truth attribute labels $\mybf{h}^n$ (i.e. learning with observed attributes).
 } % LARGE
@@ -259,12 +251,7 @@ SVM with $\Delta_{\mathrm{new}}$ & 74.51 & 66.74\\
 \end{center}
 }
 }
-%
-\end{center}
 
-\vfill
-\begin{center}
-{\color{DarkBlue}\LARGE \hspace{5cm}The 11th European Conference on Computer Vision, Heraklion, Crete, Greece, September 2010\hspace{5cm}}\\
 \end{center}
 
 \end{document}
