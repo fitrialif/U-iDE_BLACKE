@@ -14,6 +14,8 @@
 \usepackage{nicefrac}       % compact symbols for 1/2, etc.
 \usepackage{microtype}      % microtypography
 
+\usepackage{graphicx}
+
 \title{BLACK: Body Language Affect Classification Kernel}
 
 \author{
@@ -42,7 +44,11 @@
 
 As viewpoint invariance is a major issue that we have to take account, we use body posture mainly as a supplement to existing facial affective labels if it is detected.
 
-%% write an algorithm for this?
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.5]{Pipeline}
+	\caption{The overall pipeline.}
+\end{figure}
 
 \subsection{Training}
 As the problem that the present model is trying to solve involve uncensored face along with body posture, it is particularly difficult to obtain relevant published datasets that are labelled and publicly available. Past research in this field involved manual construction of data from actors (cite COBOL here).
@@ -51,10 +57,10 @@ To address this issue, we manually construct a dataset of unlabelled images of h
 
 \begin{figure}[h]
 	\centering
-%  \fbox{\rule[-.5cm]{0cm}{4cm} \rule[-.5cm]{4cm}{0cm}}
-	\includegraphics[scale=1]{Pipeline}
-	\caption{The Training pipeline.}
+	\includegraphics[scale=0.5]{tpipeline}
+	\caption{The training pipeline.}
 \end{figure}
+
 The unlabelled image is first passed into OpenPose to obtain a set of posture keypoints (ie. skeleton) of the human in the image, as well as a set of face keypoints. The face keypoints will be passed into an already trained face emotional classifier to give a ground truth affective label for the overall human in the image as informed by the face. The skeleton is then processed into an invariant form and used along with the affective label to train the body language affect classifier.
 
 \subsection{Face Emotion Classifier}
