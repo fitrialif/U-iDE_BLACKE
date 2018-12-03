@@ -18,7 +18,7 @@
 
 \author{
   Undergrad-ient Descent Expedition: \\
-  Jack (Xiang) Zhou, James Bie, Karan Aujla, Eric Gao, Insoo Rhee\\
+  Jack (Xiang) Zhou, Karan Aujla, James Bie, Eric Gao, Insoo Rhee\\
   Faculty of Applied Sciences\\
   Simon Fraser University\\
   Burnaby, Canada\\
@@ -34,10 +34,40 @@
 \end{abstract}
 
 \section{Introduction}
+% cite BEAST
+% cite COBOL
+
 \section{Approach}
+\subsection{Architecture}
+
+As viewpoint invariance is a major issue that we have to take account, we use body posture mainly as a supplement to existing facial affective labels if it is detected.
+
+%% write an algorithm for this?
+
+\subsection{Training}
+As the problem that the present model is trying to solve involve uncensored face along with body posture, it is particularly difficult to obtain relevant published datasets that are labelled and publicly available. Past research in this field involved manual construction of data from actors (cite COBOL here).
+
+To address this issue, we manually construct a dataset of unlabelled images of humans with visible face and body posture by using authors of this paper as actors as well as sources on the internet. The face and body are both clearly visible in the training images. The image will not be given a label when it is fed into the training pipeline in a pseudounsupervised learning paradigm. We describe the training pipeline as follows:
+
+\begin{figure}[h]
+	\centering
+%  \fbox{\rule[-.5cm]{0cm}{4cm} \rule[-.5cm]{4cm}{0cm}}
+	\includegraphics[scale=1]{Pipeline}
+	\caption{The Training pipeline.}
+\end{figure}
+The unlabelled image is first passed into OpenPose to obtain a set of posture keypoints (ie. skeleton) of the human in the image, as well as a set of face keypoints. The face keypoints will be passed into an already trained face emotional classifier to give a ground truth affective label for the overall human in the image as informed by the face. The skeleton is then processed into an invariant form and used along with the affective label to train the body language affect classifier.
+
+\subsection{Face Emotion Classifier}
+Deets on face emotion classifier
+
+\subsection{Invariance in posture keypoints}
+Deets on invariant form of posture keypoints
+
 \section{Experiments}
 \section{Conclusion}
 \section{Contributions}
+
+As with most group projects, each author of this paper contributed a considerable amount of work towards piecing together the project. Jack oversaw the project by organizing and delegating tasks for everyone as well as being the main composer of the paper and poster. Jack and James came up with the design of the overall pipeline for the models and for training. Karan worked with existing models for body posture keypoint extraction and implemented the top level program. Eric and James are the main contributors to data collection and piecing together a custom dataset for the project. Insoo and Jack working on designing and implementing the model for mapping body keypoints to affective labels.
 
 %\section{Submission of papers to NIPS 2018}
 %
