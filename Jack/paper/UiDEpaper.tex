@@ -15,6 +15,7 @@
 \usepackage{microtype}      % microtypography
 
 \usepackage{graphicx}
+\usepackage{cite}
 
 \title{BLACK: Body Language Affect Classification Kernel}
 
@@ -38,11 +39,15 @@
 \section{Introduction}
 % cite BEAST
 % cite COBOL
+awooo 56709
 
+Talk about COBOL, work has been done before but not on a skeleton level
 \section{Approach}
 \subsection{Architecture}
 
-As viewpoint invariance is a major issue that we have to take account, we use body posture mainly as a supplement to existing facial affective labels if it is detected.
+We introduce the general architecture of the overall pipeline in this section. The novel and primary goal of the present work is to assign affective labels with learned patterns in body langauge. However, as we are only in the primary stage in this pursuit and we do not have a comprehensive method toward accounting for viewpoint invariance, using body posture as the primary is not very realistic. In the present work we use body language mainly as a supplement to existing facial affective labels if it is detected.
+
+A snapshot is taken from an arbitrary visual stream and the resulting image is passed into OpenPose to detect all persons. For each person: (1) If a face was found, then it is passed into a face-based classifier for an evaluation of the affective rating vector based solely on face. (2) If a body was found, then it is passed into a body language-based classifier for an evaluation of the affective rating vector based solely on body. A weighted sum is computed between (1) and (2) for each person. If only one of (1) or (2) is found, then only that one is taken. A grand total is calculated by summing over every person's weighted sum of affective labels. The grand total will be passed into a softmax function to obtain a probability vector of the model prediction. A graphical depiction of this overall process is shown in Figure 1.
 
 \begin{figure}[h]
 	\centering
@@ -50,6 +55,12 @@ As viewpoint invariance is a major issue that we have to take account, we use bo
 	\caption{The overall pipeline.}
 \end{figure}
 
+\subsubsection{Body Language Keypoint Estimation}
+
+To extract body keypoints, we used the OpenPose system produced by the CMU Perceptual Computing Laboratory ~\citep{cao2017realtime} ~\citep{simon2017hand} ~\citep{wei2016cpm}
+
+\subsubsection{Face Emotion Classification}
+aaaaaaa
 \subsection{Training}
 As the problem that the present model is trying to solve involve uncensored face along with body posture, it is particularly difficult to obtain relevant published datasets that are labelled and publicly available. Past research in this field involved manual construction of data from actors (cite COBOL here).
 
@@ -57,23 +68,19 @@ To address this issue, we manually construct a dataset of unlabelled images of h
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[scale=0.5]{tpipeline}
+	\includegraphics[scale=0.6]{tpipeline}
 	\caption{The training pipeline.}
 \end{figure}
 
-The unlabelled image is first passed into OpenPose to obtain a set of posture keypoints (ie. skeleton) of the human in the image, as well as a set of face keypoints. The face keypoints will be passed into an already trained face emotional classifier to give a ground truth affective label for the overall human in the image as informed by the face. The skeleton is then processed into an invariant form and used along with the affective label to train the body language affect classifier.
-
-\subsection{Face Emotion Classifier}
-Deets on face emotion classifier
-
-\subsection{Invariance in posture keypoints}
-Deets on invariant form of posture keypoints
+The unlabelled image is first passed into OpenPose to obtain a set of posture keypoints (ie. a skeleton) of the human in the image, as well as a set of face keypoints. The face keypoints will be passed into an already trained face emotional classifier to give a ground truth affective label for the overall human in the image as informed by the face. The skeleton is then processed into an invariant form and used along with the affective label to train the body language affect classifier.
 
 \section{Experiments}
 \section{Conclusion}
 \section{Contributions}
 
-As with most group projects, each author of this paper contributed a considerable amount of work towards piecing together the project. Jack oversaw the project by organizing and delegating tasks for everyone as well as being the main composer of the paper and poster. Jack and James came up with the design of the overall pipeline for the models and for training. Karan worked with existing models for body posture keypoint extraction and implemented the top level program. Eric and James are the main contributors to data collection and piecing together a custom dataset for the project. Insoo and Jack working on designing and implementing the model for mapping body keypoints to affective labels.
+As with most group projects, each author of this paper contributed a considerable amount of work towards piecing together the project. Jack oversaw the project by organizing and delegating tasks for everyone as well as being the main composer of the paper and poster. Jack and James formulated the design of the overall pipeline for the models and for training the model. Karan worked with existing models for body posture keypoint extraction and implemented the top level program. Eric and James are the main contributors to data collection and piecing together a custom dataset for the project. Insoo and Jack worked on designing and implementing the model for mapping body keypoints to affective labels.
+
+We would also like to thank Professor Angelica Lim for consultations and guidance toward the design and theoretical groundwork in the project.
 
 %\section{Submission of papers to NIPS 2018}
 %
@@ -382,14 +389,8 @@ As with most group projects, each author of this paper contributed a considerabl
 %acknowledgments go at the end of the paper. Do not include
 %acknowledgments in the anonymized submission, only in the final paper.
 %
-%\section*{References}
-%
-%References follow the acknowledgments. Use unnumbered first-level
-%heading for the references. Any choice of citation style is acceptable
-%as long as you are consistent. It is permissible to reduce the font
-%size to \verb+small+ (9 point) when listing the references. {\bf
-%  Remember that you can use more than eight pages as long as the
-%  additional pages contain \emph{only} cited references.}
+\section*{References}
+
 %\medskip
 %
 %\small
@@ -407,5 +408,8 @@ As with most group projects, each author of this paper contributed a considerabl
 %learning and recall at excitatory recurrent synapses and cholinergic
 %modulation in rat hippocampal region CA3. {\it Journal of
 %  Neuroscience} {\bf 15}(7):5249-5262.
+  
+\bibliography{references.bib}{}
+\bibliographystyle{plain}
 
 \end{document}
