@@ -15,19 +15,14 @@ from model import *
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
-print("we imported a model")
-
-
-
 dt = pandas.read_csv("data.csv", header=None)
 dt.head()
 dataset = dt.values
 dataset = dataset[1:]
 
-x = dataset[:,0:210]
+# x = dataset[:,0:210]
+x = dataset[:,0:48]
 t = dataset[:,-1]
-
-print(x.shape,t.shape)
 
 encoder = LabelEncoder()
 encoder.fit(t)
@@ -49,15 +44,16 @@ testloader  = torch.utils.data.DataLoader(dataset = testset,
                                             batch_size=5,
                                             shuffle=True)
 
-model = BLAC()
+model = BLACK().to(device)
 criterion = nn.CrossEntropyLoss()
 optimizer = torch.optim.SGD(model.parameters(),lr=0.01)
 
 def train(epoch):
     model.train()
     for batch_ind, (data, target) in enumerate(trainloader):
-        data,target = Variable(data),Variable(target)
-        # to device later
+        
+        data = Variable(data).to(device)
+        target = Variable(target).to(device)
 
         optimizer.zero_grad()
         output = model(data)
@@ -69,9 +65,10 @@ def train(epoch):
         if batch_ind%10 == 0:
             print('epoch: {} [{}/{} ({:.0f}%)]\tLoss: {:.6f}'.format(
                 epoch, batch_ind*len(data),len(trainloader.dataset),
-                100. * batch_ind/len(trainloader), loss.data[0]
+                100. * batch_ind/len(trainloader), loss.data
             ))
 
 
-for epoch in range(1,10):
+for epoch in range(1,1000):
     train(epoch)
+    torch.save(model.state_dict(),'model.pt') # make .pt file have different names
