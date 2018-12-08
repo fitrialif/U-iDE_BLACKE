@@ -5,6 +5,12 @@ Zhe Cao, Tomas Simon, Shih-En Wei, and Yaser Sheikh.
 \newblock Realtime multi-person 2d pose estimation using part affinity fields.
 \newblock In {\em CVPR}, 2017.
 
+\bibitem{schindler2008recognizing}
+Konrad Schindler, Luc Van~Gool, and Beatrice de~Gelder.
+\newblock Recognizing emotions expressed by body pose: A biologically inspired
+  neural model.
+\newblock {\em Neural networks}, 21(9):1238--1246, 2008.
+
 \bibitem{simon2017hand}
 Tomas Simon, Hanbyul Joo, Iain Matthews, and Yaser Sheikh.
 \newblock Hand keypoint detection in single images using multiview

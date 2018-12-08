@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.10.13)  6 DEC 2018 12:30
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.10.13)  7 DEC 2018 20:09
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -769,10 +769,10 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             See the microtype manual for details.
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <12> not available
 (Font)              Font shape `T1/ptm/b/n' tried instead on input line 35.
-<Pipeline.png, id=40, 638.385pt x 292.09125pt>
+<Pipeline.png, id=45, 638.385pt x 292.09125pt>
 File: Pipeline.png Graphic file (type png)
 <use Pipeline.png>
-Package pdftex.def Info: Pipeline.png  used on input line 54.
+Package pdftex.def Info: Pipeline.png  used on input line 60.
 (pdftex.def)             Requested size: 319.19171pt x 146.04526pt.
 
 
@@ -782,42 +782,43 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-<tpipeline.png, id=56, 658.46pt x 261.97874pt>
+<tpipeline.png, id=63, 658.46pt x 261.97874pt>
 File: tpipeline.png Graphic file (type png)
 <use tpipeline.png>
-Package pdftex.def Info: tpipeline.png  used on input line 71.
+Package pdftex.def Info: tpipeline.png  used on input line 79.
 (pdftex.def)             Requested size: 395.07906pt x 157.18845pt.
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [2 <./Pipeline.png> <./tpipeline.png>] (./UiDEpaper.bbl)
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 415.
- [3]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 415.
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[2 <./Pipeline.png>] (./UiDEpaper.bbl)
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 106.
+ [3 <./tpipeline.png>]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 106.
  (./UiDEpaper.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 415.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 415.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 106.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 106.
 Package rerunfilecheck Info: File `UiDEpaper.out' has not changed.
-(rerunfilecheck)             Checksum: EDD9165B1B093C92CC35B06C50AA366B;525.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 415.
+(rerunfilecheck)             Checksum: 0A0733280B49F84800BEAADAB0C50FC5;586.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 106.
  ) 
 Here is how much of TeX's memory you used:
- 8328 strings out of 492982
- 125051 string characters out of 6134895
- 242876 words of memory out of 5000000
- 11675 multiletter control sequences out of 15000+600000
- 29974 words of font info for 90 fonts, out of 8000000 for 9000
+ 8342 strings out of 492982
+ 125277 string characters out of 6134895
+ 244141 words of memory out of 5000000
+ 11679 multiletter control sequences out of 15000+600000
+ 30364 words of font info for 96 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 31i,8n,38p,851b,329s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 31i,8n,38p,1215b,327s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/share/texmf/
 fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/texmf/fonts/type1/public/c
 m-super/sftt1000.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8
 a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/sha
 re/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on UiDEpaper.pdf (3 pages, 109354 bytes).
+Output written on UiDEpaper.pdf (3 pages, 116342 bytes).
 PDF statistics:
- 95 PDF objects out of 1000 (max. 8388607)
- 81 compressed objects within 1 object stream
- 20 named destinations out of 1000 (max. 500000)
- 18515 words of extra memory for PDF output out of 20736 (max. 10000000)
+ 101 PDF objects out of 1000 (max. 8388607)
+ 87 compressed objects within 1 object stream
+ 21 named destinations out of 1000 (max. 500000)
+ 18523 words of extra memory for PDF output out of 20736 (max. 10000000)
 
