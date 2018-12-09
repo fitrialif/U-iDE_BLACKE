@@ -10,13 +10,14 @@ import numpy as np
 
 from sklearn.preprocessing import LabelEncoder
 from sklearn.model_selection import train_test_split
+from sklearn.metrics import confusion_matrix
+import itertools
 
 import matplotlib.pyplot as plt
 overall_loss = []
 
 from model import *
-
-from LSUV import LSUVinit
+from tools import *
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
@@ -32,7 +33,7 @@ encoder = LabelEncoder()
 encoder.fit(t)
 t = encoder.transform(t)
 
-x_tr, x_te, t_tr, t_te = train_test_split(x,t,test_size = 0.1)
+x_tr, x_te, t_tr, t_te = train_test_split(x,t,test_size = 0.3)
 
 x_tr = torch.FloatTensor(x_tr)
 t_tr = torch.LongTensor(t_tr)
@@ -45,7 +46,7 @@ trainloader = torch.utils.data.DataLoader(dataset = trainset,
                                             batch_size=5,
                                             shuffle=True)
 testloader  = torch.utils.data.DataLoader(dataset = testset,
-                                            batch_size=5,
+                                            batch_size=1,
                                             shuffle=True)
 
 model = BLACkp1().to(device)
@@ -83,6 +84,8 @@ def test():
     test_loss = 0
     correct = 0 
     
+    t_predictions = []
+
     for batch_ind, (data, target) in enumerate(testloader):
         
         data = Variable(data).to(device)
@@ -90,9 +93,10 @@ def test():
 
         output = model(data)
 
-        test_loss += F.cross_entropy(output, target, size_average=False).data[0]
+        test_loss += F.cross_entropy(output, target, size_average=False).data
 
         pred = output.data.max(1, keepdim=True)[1]
+        t_predictions.append(pred)
         correct += pred.eq(target.data.view_as(pred)).cpu().sum()
 
     test_loss /= len(testloader.dataset)
@@ -102,12 +106,24 @@ def test():
         100. * correct / len(testloader.dataset)
     ))
 
+    return torch.FloatTensor(t_predictions)
+
+## TRAINING
 for epoch in range(1,1000):
     train(epoch)
     torch.save(model.state_dict(),'model.pt') # make .pt file have different names
 
-test()
-
+## LOSS
+plt.figure()
 plt.plot(overall_loss)
+
+## Confusion Matrix
+t_pred = test()
+torch.reshape(t_pred,(-1,))
+cnf_matrix = confusion_matrix(np.asarray(t_te), t_pred)
+plt.figure()
+class_names=("angry","fear","happy","sad")
+plot_confusion_matrix(cnf_matrix, classes=class_names, normalize=True,
+                      title='Normalized confusion matrix')
 
 plt.show()
