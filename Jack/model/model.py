@@ -1,13 +1,13 @@
 import torch.nn.functional as F
 import torch.nn as nn
 
-class BLACK(nn.Module):
+class BLACkp1(nn.Module):
     def __init__(self):
-        super(BLACK, self).__init__()
+        super(BLACkp1, self).__init__()
 
-        self.fc1 = nn.Linear(48,10)
+        self.fc1 = nn.Linear(75,10)
         self.fc2 = nn.Linear(10,10)
-        self.fc3 = nn.Linear(10,7)
+        self.fc3 = nn.Linear(10,4)
 
     def forward(self,x):
         
@@ -16,5 +16,6 @@ class BLACK(nn.Module):
         out = self.fc2(out)
         out = F.relu(out)
         out = self.fc3(out)
+        # out = nn.Softmax(out)
 
         return out
