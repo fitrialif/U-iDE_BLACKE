@@ -49,7 +49,7 @@ testloader  = torch.utils.data.DataLoader(dataset = testset,
                                             batch_size=1,
                                             shuffle=True)
 
-model = BLACkp1().to(device)
+model = BLACkp().to(device)
 criterion = nn.CrossEntropyLoss()
 optimizer = torch.optim.SGD(model.parameters(),lr=0.01)
 
