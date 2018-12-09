@@ -21,7 +21,7 @@ from tools import *
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
-dt = pandas.read_csv("data.csv", header=None)
+dt = pandas.read_csv("kp_models/data.csv", header=None)
 dt.head()
 dataset = dt.values
 dataset = dataset[1:]
