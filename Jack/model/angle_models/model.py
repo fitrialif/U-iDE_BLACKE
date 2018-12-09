@@ -3,7 +3,7 @@ import torch.nn as nn
 
 class BLACangle(nn.Module):
     def __init__(self):
-        super(BLACkangle, self).__init__()
+        super(BLACangle, self).__init__()
 
         self.fc1 = nn.Linear(48,200)
         self.fc2 = nn.Linear(200,128)

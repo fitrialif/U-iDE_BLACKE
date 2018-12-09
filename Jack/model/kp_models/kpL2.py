@@ -49,9 +49,11 @@ testloader  = torch.utils.data.DataLoader(dataset = testset,
                                             batch_size=1,
                                             shuffle=True)
 
-model = BLACangle().to(device)
+model = BLACkp().to(device)
 criterion = nn.CrossEntropyLoss()
 optimizer = torch.optim.SGD(model.parameters(),lr=0.01)
+
+all_params = torch.cat([x.view(-1) for  x in model.parameters()])
 
 def train(epoch):
     model.train()
@@ -66,7 +68,7 @@ def train(epoch):
         optimizer.zero_grad()
         output = model(data)
 
-        loss = F.cross_entropy(output,target)
+        loss = F.cross_entropy(output,target) + 0.01*torch.norm(all_params,2)
         epoch_loss.append(loss.data)
         loss.backward()
         optimizer.step()
@@ -101,29 +103,40 @@ def test():
 
     test_loss /= len(testloader.dataset)
 
+    accuracy = 100. * correct / len(testloader.dataset)
+
     print('\nTest set: Average loss: {:.4f}, Accuracy: {}/{} ({:.0f}%)\n'.format(
-        test_loss, correct, len(testloader.dataset),
-        100. * correct / len(testloader.dataset)
+        test_loss, correct, len(testloader.dataset), accuracy
     ))
 
-    return torch.FloatTensor(t_predictions)
+    return torch.FloatTensor(t_predictions), accuracy
+
+accuracies = []
 
 ## TRAINING
-for epoch in range(1,1000):
+for epoch in range(1,700):
     train(epoch)
-    torch.save(model.state_dict(),'model.pt') # make .pt file have different names
+    _,accuracy = test()
+    accuracies.append(accuracy)
+    torch.save(model.state_dict(),'angle_model.pt') # make .pt file have different names
 
 ## LOSS
 plt.figure()
+plt.title("loss over epochs")
 plt.plot(overall_loss)
 
+## accuracies
+plt.figure()
+plt.title("accuracy over epochs")
+plt.plot(accuracies)
+
 ## Confusion Matrix
-t_pred = test()
+t_pred,_ = test()
 torch.reshape(t_pred,(-1,))
 cnf_matrix = confusion_matrix(np.asarray(t_te), t_pred)
 plt.figure()
 class_names=("angry","fear","happy","sad")
 plot_confusion_matrix(cnf_matrix, classes=class_names, normalize=True,
-                      title='Normalized confusion matrix')
+                      title='Confusion Matrix')
 
 plt.show()
