@@ -16,8 +16,9 @@ overall_loss = []
 
 from model import *
 
-# device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-device = 'cpu'
+from LSUV import LSUVinit
+
+device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 dt = pandas.read_csv("data.csv", header=None)
 dt.head()
@@ -49,9 +50,7 @@ testloader  = torch.utils.data.DataLoader(dataset = testset,
 
 model = BLACkp1().to(device)
 criterion = nn.CrossEntropyLoss()
-# optimizer = torch.optim.SGD(model.parameters(),lr=0.01)
 optimizer = torch.optim.SGD(model.parameters(),lr=0.01)
-
 
 def train(epoch):
     model.train()
@@ -83,7 +82,6 @@ def test():
     model.eval()
     test_loss = 0
     correct = 0 
-
     
     for batch_ind, (data, target) in enumerate(testloader):
         
@@ -103,9 +101,6 @@ def test():
         test_loss, correct, len(testloader.dataset),
         100. * correct / len(testloader.dataset)
     ))
-
-    
-
 
 for epoch in range(1,1000):
     train(epoch)
