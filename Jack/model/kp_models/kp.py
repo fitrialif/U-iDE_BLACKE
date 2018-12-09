@@ -116,7 +116,7 @@ for epoch in range(1,700):
     train(epoch)
     _,accuracy = test()
     accuracies.append(accuracy)
-    torch.save(model.state_dict(),'kp.pt') # make .pt file have different names
+    torch.save(model.state_dict(),'kp_acc.pt') # make .pt file have different names
 
 ## LOSS
 plt.figure()

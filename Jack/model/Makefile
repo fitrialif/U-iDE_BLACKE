@@ -7,4 +7,4 @@ default:
 	python angle_models/angL2.py
 
 clean:
-	rm -rf */*.pt */__*
+	rm -rf */*.pt */__* *.pt *.blacke

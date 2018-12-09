@@ -112,7 +112,7 @@ def test():
 accuracies = []
 
 ## TRAINING
-for epoch in range(1,70):
+for epoch in range(1,700):
     train(epoch)
     _,accuracy = test()
     accuracies.append(accuracy)
