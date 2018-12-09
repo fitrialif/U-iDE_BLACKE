@@ -112,11 +112,11 @@ def test():
 accuracies = []
 
 ## TRAINING
-for epoch in range(1,700):
+for epoch in range(1,70):
     train(epoch)
     _,accuracy = test()
     accuracies.append(accuracy)
-    torch.save(model.state_dict(),'angle_model.pt') # make .pt file have different names
+    torch.save(model.state_dict(),'ang.pt') # make .pt file have different names
 
 ## LOSS
 plt.figure()
@@ -137,4 +137,7 @@ class_names=("angry","fear","happy","sad")
 plot_confusion_matrix(cnf_matrix, classes=class_names, normalize=True,
                       title='Confusion Matrix')
 
-plt.show()
+# plt.show()
+
+with open("ang_acc.blacke","w") as f:
+    f.write(str(accuracies))
