@@ -5,7 +5,7 @@ class BLACkpang(nn.Module):
     def __init__(self):
         super(BLACkpang, self).__init__()
 
-        self.fc1 = nn.Linear(123,200)
+        self.fc1 = nn.Linear(98,200)
         self.fc2 = nn.Linear(200,128)
         self.fc3 = nn.Linear(128,4)
 
