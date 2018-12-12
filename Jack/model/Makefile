@@ -13,4 +13,4 @@ default:
 	python mixed_models/mixedL2.py
 
 clean:
-	rm -rf */*.pt */__* *.pt *.blacke
+	rm -rf */*.pt */__* *.pt *.blacke *.png

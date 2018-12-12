@@ -112,21 +112,23 @@ def test():
 accuracies = []
 
 ## TRAINING
-for epoch in range(1,700):
+for epoch in range(1,1000):
     train(epoch)
     _,accuracy = test()
     accuracies.append(accuracy)
-    torch.save(model.state_dict(),'kp_acc.pt') # make .pt file have different names
+    torch.save(model.state_dict(),'kp.pt')
 
 ## LOSS
 plt.figure()
 plt.title("loss over epochs")
 plt.plot(overall_loss)
+plt.savefig("kp_loss.png")
 
 ## accuracies
 plt.figure()
 plt.title("accuracy over epochs")
 plt.plot(accuracies)
+plt.savefig("kp_acc.png")
 
 ## Confusion Matrix
 t_pred,_ = test()
@@ -136,8 +138,7 @@ plt.figure()
 class_names=("angry","fear","happy","sad")
 plot_confusion_matrix(cnf_matrix, classes=class_names, normalize=True,
                       title='Confusion Matrix')
+plt.savefig("kp_conf.png")
 
-# plt.show()
-
-with open("kp.blacke","w") as f:
+with open("kp_acc.blacke","w") as f:
     f.write(str(accuracies))

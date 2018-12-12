@@ -20,7 +20,7 @@ with open("angL2_acc.blacke","r") as f:
     angL2= sanitizeTensors(f.readline()[1:-1].split(","))
 
 kp = []
-with open("kp_acc.blacke","r") as f:
+with open("kp.blacke","r") as f:
     kp= sanitizeTensors(f.readline()[1:-1].split(","))
 
 kpL1 = []
@@ -32,7 +32,7 @@ with open("kpL2_acc.blacke","r") as f:
     kpL2= sanitizeTensors(f.readline()[1:-1].split(","))
 
 mixed = []
-with open("mixed_acc.blacke","r") as f:
+with open("mixed.blacke","r") as f:
     mixed= sanitizeTensors(f.readline()[1:-1].split(","))
 
 mixedL1 = []

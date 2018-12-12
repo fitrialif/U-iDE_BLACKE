@@ -114,7 +114,7 @@ def test():
 accuracies = []
 
 ## TRAINING
-for epoch in range(1,700):
+for epoch in range(1,1000):
     train(epoch)
     _,accuracy = test()
     accuracies.append(accuracy)
@@ -124,11 +124,13 @@ for epoch in range(1,700):
 plt.figure()
 plt.title("loss over epochs")
 plt.plot(overall_loss)
+plt.savefig("mixedL1_loss.png")
 
 ## accuracies
 plt.figure()
 plt.title("accuracy over epochs")
 plt.plot(accuracies)
+plt.savefig("mixedL1_acc.png")
 
 ## Confusion Matrix
 t_pred,_ = test()
@@ -138,8 +140,7 @@ plt.figure()
 class_names=("angry","fear","happy","sad")
 plot_confusion_matrix(cnf_matrix, classes=class_names, normalize=True,
                       title='Confusion Matrix')
-
-# plt.show()
+plt.savefig("mixedL1_conf.png")
 
 with open("mixedL1_acc.blacke","w") as f:
     f.write(str(accuracies))
