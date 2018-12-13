@@ -42,7 +42,7 @@ Affective Computing is a rapidly growing interdisciplinary field that is concern
 
 For the visual modality, the present state of the art approach to addressing this problem is by applying Facial Expression Recognition (FER). The process involves training classifiers that first identifies faces and then taking the images of faces as a means to identify an individual's emotional state through another trained classifier \citep{li2018deep}. The overall method is successful and current approaches with deep neural networks and such can achieve near perfect accuracy ratings on testing data. 
 
-While FER is a successful method, it is not applicable when the face of the individual is not seen or covered by objects or body limbs. Observing facial information is often key and a dominant factor when it comes to deciding the current emotional state of a person. The absence of this information would imply a large increase in variability in evaluating the emotional state of a person, but in order to answer the question of "what is this person feeling", we have to look at tackling the problem with other available information.
+While FER is a successful method, it is not applicable when the face of the individual is not seen or is covered by objects or body limbs. Observing facial information is often key and a dominant factor when it comes to deciding the current emotional state of a person. The absence of this information would imply a large increase in variability in evaluating the emotional state of a person, but in order to answer the question of "what is this person feeling", we have to look at tackling the problem with other available information.
 
 \subsection{Problem Statement}
 
@@ -86,20 +86,22 @@ Openposes’s	 basic algorithm finds each type of keypoint in all bodies simulta
 
 As with all work done in computational vision, it is hard to know the exact shape, size and distance of an object in an image as it is only a projection of the original object. The problem of extracting this type of information is called the inverse projection problem, and it is a non-trivial problem.
 
-The ability to account for the inverse projection problem and ultimately achieving viewpoint invariance in models has been a difficult task, especially when the only given information is just a two dimensional image most of the time. The present direction in accounting for this problem is by constructing 3D representations of the object being seen in the image (for example refer to \citep{shin2018pixels} ). The present work faces many challenges related to this problem and they will be addressed separately in the coming sections.
+The ability to account for the inverse projection problem and ultimately achieving viewpoint invariance in models has been a difficult task, especially when the only given information is just a two dimensional image most of the time. The present direction in accounting for this problem is by constructing 3D representations of the object seen in the image (for example refer to \citep{shin2018pixels} ). The present work faces many challenges related to this problem and they will be addressed separately in the coming sections.
 
 \section{Approach}
 
-In this section we describe various aspects and considerations to setting up our models and overall approach.
+In this section we describe various considerations and challenges toward setting up our models and the overall approach, and the steps taken to account for them.
 
 \subsection{Data}
 
 \subsubsection{Dataset Composition}
-Constructing a dataset was a non-trivial task as it is difficult to find labelled datasets that have faces, full body, and is labelled in a uniform manner. Previous work in this field involved manual construction of data from actors \citep{schindler2008recognizing}. For the current work we are piecing together a dataset from various sources. However, since only the posture information will remain, the colorization and image dimensions do not matter.
+Constructing a dataset was a non-trivial task as it is difficult to find datasets that have faces, full body, and is labelled in a uniform manner. Previous work in this field involved manual construction of data from actors \citep{schindler2008recognizing}. For the current work we are piecing together a dataset from various sources. However, since only the posture information will remain, the colorization, image dimensions, and actor identity are not preserved.
 
 We used the BEAST dataset \citep{de2011bodily} from the Brain and Emotion Laboratory in Maastricht University which had labelled grayscale images of individuals with their face censored. Images in this dataset are categorized into four emotional categories: Happy, Sad, Angry, and Fearful. We also obtained another dataset from the same laboratory which had the same type of data but colored and larger to include in the dataset that we are piecing together \citep{stienen2012computational}.
 
-From there onwards, the team found suitable images of people online by various means such as image search engines and news articles. The sampled images are then hand-labelled. In order to generate more datapoints, we applied jittering techniques and reflections to transform the data that we already have.
+Due to the fact that a dominant section of our dataset is standardized and has only four emotional categories, we restricted the amount of classes available in our dataset to be four as well.
+
+From there onwards, the team found suitable images of people online by various means such as image search engines and news articles. The sampled images are then carefully hand-labelled. In order to generate more datapoints, we applied jittering techniques and reflections to transform the data that we already have to achieve a total of 1345 datapoints.
 
 \subsubsection{Pre-processing}
 
@@ -128,31 +130,33 @@ To prepare any piece of data for the classifiers that we are going to train, the
 Each body keypoint that is extracted from the image comes with a 3-tuple of values $(x,y,c)$ denoting the normalized coordinates (in percentages) of the keypoint and the confidence in the measurement in this point. The total comes to 75 numbers per body, which is significantly less data than an image.
 
 \subsection{Invariance}
-Depth perception is a major issue in the present work that has to be addressed. Objects that are closer appear larger than object that are farther away. Humans have a way to account for this issue by preconceived prior knowledge about the world as well as exploiting retinal disparity. However, judging from solely the keypoint information, it is hard to tell whether if someone is tall or if someone is close. The overall translation of the person will also have an impact on what the classifier receives, as the overall position of a person in an image have no bearing on the emotional state of the person.
+Depth perception is a major issue in the present work that has to be addressed. Objects that are closer appear larger than object that are farther away. Humans have a way to account for this issue by preconceived prior knowledge about the world as well as exploiting retinal disparity. However, judging from solely the keypoint information, it is hard to tell whether if someone is tall or if someone is close. The overall translation of the person will also have an impact on what the classifier receives, but the overall position of a person in an image have no bearing on the emotional state of the person.
 
 We propose a transformation over the estimated keypoints that ultimately results in an invariant form that accounts for some of these issues.
 
 \subsubsection{Invariant Form Transformation}
 
-To begin, the immediate goal towards a fitting transformation should be that it is translation independent, where any arbitrary set of keypoints should be semantically equivalent to a translated version of those keypoints. 
+To begin, the immediate goal towards a fitting transformation should be that it is translation independent, where any arbitrary set of keypoints should be semantically equivalent to a translated version of those keypoints.
 
 The secondary goal is to discard information regarding the length of the bones in the set of keypoint to account for depth perception.
 
-The present approach takes advantage of the fact that the connections between the keypoints in a body exhibit a tree topology. Therefore, patial information can be assigned to individual parts and the overall information can still be retrived from the end. Angles between a particular keypoint and its parent is calculated by the following formula:
+The present approach takes advantage of the fact that the connections between the keypoints in a body exhibit a tree topology (ie. Each keypoint only has one parent keypoint). Therefore, partial information can be assigned to individual portions and the overall picture can be somewhat reconstructed from those pieces of information. For every keypoint and its parent, we construct a new set of values by the following formula:
 
 $$
-\theta_k = \arctan \left(\frac{y_k -y_{Pa(k)}}{x_k -x_{Pa(k)}} \right)
+(\theta_k,c_k) = \left(\arctan \left(\frac{y_k -y_{Pa(k)}}{x_k -x_{Pa(k)}} \right), \frac{c_k + c_{Pa(k)}}{2}\right)
 $$
 
-Where $k$ denotes a particular keypoint other than the "root" of the keypoint tree (the nose) and $Pa(k)$ denotes the parent keypoint of $k$. An average of the confidence rating $c$ between $k$ and $Pa(k)$ is taken to form a new 2-tuple $(\theta, c)$ for all 24 of the non-root keypoints, which contains 48 numbers in total.
+Where $k$ denotes a particular keypoint other than the "root" of the keypoint tree (the nose) and $Pa(k)$ denotes the parent keypoint of $k$. The resulting image of the transformation forms a new 2-tuple $(\theta, c)$ for all 24 of the non-root keypoints, which contains 48 numbers in total. Although it's not as significant, this transformation poses an even further dimensionality reduction than extracting keypoints.
 
 \subsection{Architecture}
 
 \subsubsection{Models}
 
-Since we are starting with testing the hypothesis that using keypoint estimation is a feasible approach as opposed to convolutional filtering, we begin with na\"ive model architectures. To begin with, we are going to work with three different feature sets: estimated keypoints, invariant form and a concatenation of the two. Each of these feature sets will correspond to a neural network that has the same structure except for the input layer. 
+Since we are starting with testing the hypothesis that using keypoint estimation is a feasible approach as opposed to convolutional filtering, we begin with na\"ive model architectures.
 
-The BLACkp network takes in the estimated keypoints, the BLACangle network takes in the invariant form of the keypoints, and the BLACkpangle takes in the concatenation of the inputs to the BLACkp and the BLACangle networks. All three BLAC* networks have two hidden fully-connected layers of size 200 and then 128 neurons, and the output is 4 neurons. All the activation functions being used in the models are Rectified Linear Units (ReLU) with bias terms enabled at every layer.
+To begin with, we are going to work with three different feature sets: estimated keypoints, invariant form and a concatenation of the two. Each of these feature sets will correspond to a neural network that has the same structure except for the input layer. 
+
+The BLACkp network takes in the estimated keypoints, the BLACangle network takes in the invariant form of the keypoints. Lastly, since it is usually the case that more features leads to better models, we also introduce the BLACkpangle model that takes in the concatenation of the inputs to BLACkp and BLACangle. All three BLAC* networks have two fully-connected hidden layers of size 200 and then 128 neurons, the output is 4 neurons for the 4 emotional classes that we have in our dataset. All the activation functions being used in the models are Rectified Linear Units (ReLU) with bias terms enabled at every layer.
 
 %\begin{figure}[h]
 %\centering
@@ -164,13 +168,19 @@ The BLACkp network takes in the estimated keypoints, the BLACangle network takes
 %\caption{The mixed network (BLACkpangle)}
 %\end{figure}
 
-\subsubsection{Training}
-
--hardware
--regularization or not
--1000 epochs
-
 \section{Experiments}
+
+\subsection{Training}
+
+To begin, we have three main models BLACkp, BLACangle, and BLACkpangle. The criterion used is the cross entropy error function, and for every model we apply stochastic gradient descent (SGD) as the optimizer on batch sizes of 5 datapoints each. The learning rate for the SGD algorithm is inversely proportional to the current epoch (ie. $\eta = 1/\mathtt{EPOCH}$) so it decays and we can prevent overstepping minimas in the error surface.  For each model, we also try to train with L2-regularization appended to the cross entropy optimizer. In total, we have 6 models that we are training.
+
+The models are trained with the pre-processed data on 1000 epochs for each model, with a 70-30 split between the training data and testing data.
+
+The resulting test accuracy from training will be compared against each other and against works that have been previously done on the topic (ie. convolutional pre-processing method done in \citep{stienen2012computational} \citep{schindler2008recognizing}).
+
+The training environment mainly consisted of a Intel Quad-Core i7-6700 with GPU acceleration enabled by a NVIDIA Gefore GTX 1050 Ti.
+
+\subsection{Results}
 
 \begin{figure}[h]
 \centering
