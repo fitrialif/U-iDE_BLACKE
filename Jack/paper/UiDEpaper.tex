@@ -21,7 +21,7 @@
 
 \author{
   Undergrad-ient Descent Expedition: \\
-  Jack (Xiang) Zhou, Karan Aujla, James Bie, Eric Gao, Insoo Rhee\\
+  Jack (Xiang) Zhou, Gurkaran Aujla, James Bie, Eric Gao, Insoo Rhee\\
   Faculty of Applied Sciences\\
   Simon Fraser University\\
   Burnaby, Canada\\
@@ -33,88 +33,172 @@
 \maketitle
 
 \begin{abstract}
-Current state of the art development in affective classification of people on visual modalities usually focuses on facial expression recognition (FER) but it has some shortcomings in its real world usage. The present work tackles the affective classification problem in body language by using keypoint estimation as a pre-processing step as opposed to previously used convolutional methods. Na\"ive neural network classifiers are trained to test for the plausibility of the approach.
+Current state of the art development in affective classification of people on visual modalities usually focuses on facial expression recognition (FER) but it has some shortcomings in its real world usage. The present work tackles the affective classification problem in body language by using keypoint estimation as a pre-processing step as opposed to previously used convolutional methods. Na\"ive neural network classifiers are trained to test for the plausibility of the approach and the approach was found to be plausible. The present approach implies a significant dimensionality reduction in classifiers needed to solve this problem.
 \end{abstract}
 
 \section{Introduction}
 
-Affective Computing is a rapidly growing interdisciplinary field that is concerned with interpretations and implications of human emotion in computation. One of the most fundamental problems in Affective Computing is classification of an individual's emotional state given information about such individual on particular modalities such as text, auditory, behavioural, and visual.
+Affective Computing is a rapidly growing interdisciplinary field that is concerned with interpretations and implications of human emotion in computation. It takes findings and motivations from computing science and psychology into account to piece together approaches to solve problems related to human affect. One of the most fundamental problems in Affective Computing is the classification of an individual's emotional state given some information about such individual on particular modalities such as text, auditory, behavioural, and visual.
 
-For the visual modality, the present state of the art approach to addressing this problem is by Facial Expression Recognition (FER), which involves training classifiers that take images of faces as a means to identify an individual's emotional state \citep{li2018deep}, it is a successful method and current approaches can achieve near perfect accuracy ratings on testing data. However, FER is not applicable when the face of the individual is not seen or covered by objects or body limbs. 
+For the visual modality, the present state of the art approach to addressing this problem is by applying Facial Expression Recognition (FER). The process involves training classifiers that first identifies faces and then taking the images of faces as a means to identify an individual's emotional state through another trained classifier \citep{li2018deep}. The overall method is successful and current approaches with deep neural networks and such can achieve near perfect accuracy ratings on testing data. 
 
-In the present work we want to address this shortcoming by identifying the emotional state of an individual in terms of only the body language that they are exhibiting (ie. their posture). This is inherently a difficult problem for humans, in particular with respect to some emotional states over others \citep{schindler2008recognizing}. Previous work has been done on the topic using a neurologically inspired convolutional model that takes in visual data about both body language and facial expression \citep{schindler2008recognizing}.
+While FER is a successful method, it is not applicable when the face of the individual is not seen or covered by objects or body limbs. Observing facial information is often key and a dominant factor when it comes to deciding the current emotional state of a person. The absence of this information would imply a large increase in variability in evaluating the emotional state of a person, but in order to answer the question of "what is this person feeling", we have to look at tackling the problem with other available information.
+
+\subsection{Problem Statement}
+
+In the present work we want to address this shortcoming by identifying the emotional state of an individual in terms of only the body language that they are exhibiting (ie. their posture). There are still associations linked with understanding the emotional state of a person when just observing their body language. For example, hands covering face is usually associated with sadness or distress, and extended arms raised high up is usually associated with happiness or surprise. However, this is inherently a difficult problem for humans, in particular with respect to some emotional states over others \citep{schindler2008recognizing}\citep{de2011bodily}. 
+
+Previous work has been done on the topic using a neurologically inspired convolutional model that takes in visual data containing both body language and facial expressions \citep{schindler2008recognizing}.
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[scale=0.2]{schindler2008}
+	\includegraphics[scale=0.3]{schindlernet}
 	\caption{Model used in Schindler et al. 2008}
 \end{figure}
 
-As seen in Figure 1, the model takes in an input image and applies orientation filtering, pooling, and template filtering on the image before feeding it into a classifier to arrive at a category decision. It is noteworthy to see that the steps taken to filter and pre-process the image are correspondent to various areas of the human visual cortex, going from low level information processing progressively to higher level information processing.
+As seen in Figure 1, the model takes in an input image and applies orientation filtering, pooling, and template filtering on the image before feeding the filtered data into a classifier to arrive at a category decision. It is noteworthy to see that the steps taken to filter and pre-process the image simulates corresponding to various areas of the human visual cortex, going from low level (ex. V1 area) information processing progressively to higher level information processing (ex. V4/IT area).
 
-While this approach is plausible and it is able to perform just as well or better than human test subjects, the model is prone to accounting for extraneous information in the low level processing steps. The present work wishes to approach the same problem by using a different approach to pre-process the input data to a high level representation. Namely, by keypoint estimation or "skeletonization" of the body in the input image. 
+\subsection{Proposed Work}
 
-The underlying motivation in play here is that when observing an image of a person, observing just the keypoints on the person preserves the relevant information regarding the person's emotional state (Figure 2).
+While the convolutional filtering approach is plausible and able to perform just as well or better than human test subjects, the model is prone to accounting for extraneous information in its processing steps. The dataset that was used for their experimental work were custom constructed and standardized on neutral backgrounds so the introduction of non-neutral backgrounds (ie. in real life) may be a highly threatening confound.
+
+The present work wishes to approach the same problem by using a different approach to pre-process the input data to a high level representation that primarily accounts for background noise as well as providing other features. Namely, using a representation of the pose of the body in the input image.
+
+The underlying motivation in play here is as follows: Suppose one is visually observing a person, knowing about only the pose that the person is making preserves the relevant information regarding the person's emotional state (Figure 2).
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[scale=0.5]{kran}
-	\caption{The extracted keypoints of the person's body and face contain the same amount of information regarding the person's emotional state as the full image. Image courtesy of one of our authors Karan Aujla}
+	\includegraphics[scale=0.4]{kran}
+	\caption{The extracted keypoints of the person's body and face contain the same amount of semantic information regarding the person's emotional state as the full image. Image courtesy of one of our authors Gurkaran Aujla}
 \end{figure}
 
-We hypothesize that using keypoint estimation is a feasible alternative as opposed to convolutional pre-processing to classifying emotional states based on just body language. The confirmation of this hypothesis would imply a significant dimensionality reduction to the input data for the classifier that leads more compact models and faster training times.
-\newpage
+We hypothesize that using a presentation of body posture is a feasible alternative to convolutional pre-processing for classifying emotional states based on just body language. The confirmation of this hypothesis would imply a significant dimensionality reduction to the input data needed for a classifier model, and that leads to more compact models and faster training times along with other implications.
+
+\subsection{Keypoint Estimation}
+
+To achieve the goal of representing a pose in a body, we look to applying keypoint estimation with OpenPose \citep{cao2017realtime} \citep{simon2017hand} \citep{wei2016cpm} created by the CMU Perceptual Computing Laboratory, which is open source and freely available for non-commercial use. 
+
+OpenPose is a system that allows for real-time keypoint estimation and detection of human bodies in images and videos. It is capable of finding estimated locations of several body keypoints in the body, hands, and face. It is a capable of doing these simultaneously with multiple people as well. 
+
+Openposes’s	 basic algorithm finds each type of keypoint in all bodies simultaneously, and then finds the connection between these keypoints in a separate neural network. The program can take most image and video formats as inputs, and it will output a variety of formats depending on the configurations. For example, it can output an image with the keypoints overlaid on the people in the image (ex. Figure 2), it can also output JSON files for the keypoints. In the JSON file, it contains the $(x,y)$ coordinates of every bone detected, as well as a confidence rating $c$ for the position of each keypoint expressed as a percentage.
+
+\subsection{Viewpoint Invariance}
+
+As with all work done in computational vision, it is hard to know the exact shape, size and distance of an object in an image as it is only a projection of the original object. The problem of extracting this type of information is called the inverse projection problem, and it is a non-trivial problem.
+
+The ability to account for the inverse projection problem and ultimately achieving viewpoint invariance in models has been a difficult task, especially when the only given information is just a two dimensional image most of the time. The present direction in accounting for this problem is by constructing 3D representations of the object being seen in the image (for example refer to \citep{shin2018pixels} ). The present work faces many challenges related to this problem and they will be addressed separately in the coming sections.
+
 \section{Approach}
 
+In this section we describe various aspects and considerations to setting up our models and overall approach.
+
+\subsection{Data}
+
+\subsubsection{Dataset Composition}
+Constructing a dataset was a non-trivial task as it is difficult to find labelled datasets that have faces, full body, and is labelled in a uniform manner. Previous work in this field involved manual construction of data from actors \citep{schindler2008recognizing}. For the current work we are piecing together a dataset from various sources. However, since only the posture information will remain, the colorization and image dimensions do not matter.
+
+We used the BEAST dataset \citep{de2011bodily} from the Brain and Emotion Laboratory in Maastricht University which had labelled grayscale images of individuals with their face censored. Images in this dataset are categorized into four emotional categories: Happy, Sad, Angry, and Fearful. We also obtained another dataset from the same laboratory which had the same type of data but colored and larger to include in the dataset that we are piecing together \citep{stienen2012computational}.
+
+From there onwards, the team found suitable images of people online by various means such as image search engines and news articles. The sampled images are then hand-labelled. In order to generate more datapoints, we applied jittering techniques and reflections to transform the data that we already have.
+
+\subsubsection{Pre-processing}
+
+To prepare any piece of data for the classifiers that we are going to train, the input image has to be fed through OpenPose first to extract a skeleton from the image. One particular advantage to using the Keypoint Estimation approach is that the input dimensions of the image and format do not matter; the output is invariant regardless of these factors. We chose to use the BODY\_25 model which contains 25 body keypoints, as shown in Table 1.
+
+\begin{table}[h]
+	\caption{Body Keypoint numbers and corresponding body parts in BODY\_25}
+	\centering
+	\begin{tabular}{cccccccc}
+	\toprule
+	0 & 1 & 2 & 3 & 4 & 5 & 6 \\
+	Nose & Neck & R\_Shoulder & R\_Elbow & R\_Wrist & L\_Shoulder & L\_Elbow\\	
+	\midrule
+	8 & 9 & 10 & 11 & 12 & 13 & 14\\
+	L\_Wrist & MidHip & R\_Hip & R\_Knee & R\_Ankle & L\_Hip & L\_Knee\\
+	\midrule
+	15 & 16 & 17 & 18 & 19 & 20 & 21\\
+	L\_Ankle & R\_Eye & L\_Eye & R\_Ear & L\_Ear & L\_BigToe & L\_SmallToe\\
+	\midrule
+	22 & 23 & 24 & 25\\
+	L\_Heel &R\_BigToe & R\_SmallToe & R\_Heel\\
+	\midrule
+	\end{tabular}
+\end{table}
+
+Each body keypoint that is extracted from the image comes with a 3-tuple of values $(x,y,c)$ denoting the normalized coordinates (in percentages) of the keypoint and the confidence in the measurement in this point. The total comes to 75 numbers per body, which is significantly less data than an image.
+
+\subsection{Invariance}
+Depth perception is a major issue in the present work that has to be addressed. Objects that are closer appear larger than object that are farther away. Humans have a way to account for this issue by preconceived prior knowledge about the world as well as exploiting retinal disparity. However, judging from solely the keypoint information, it is hard to tell whether if someone is tall or if someone is close. The overall translation of the person will also have an impact on what the classifier receives, as the overall position of a person in an image have no bearing on the emotional state of the person.
+
+We propose a transformation over the estimated keypoints that ultimately results in an invariant form that accounts for some of these issues.
+
+\subsubsection{Invariant Form Transformation}
+
+To begin, the immediate goal towards a fitting transformation should be that it is translation independent, where any arbitrary set of keypoints should be semantically equivalent to a translated version of those keypoints. 
+
+The secondary goal is to discard information regarding the length of the bones in the set of keypoint to account for depth perception.
+
+The present approach takes advantage of the fact that the connections between the keypoints in a body exhibit a tree topology. Therefore, patial information can be assigned to individual parts and the overall information can still be retrived from the end. Angles between a particular keypoint and its parent is calculated by the following formula:
+
+$$
+\theta_k = \arctan \left(\frac{y_k -y_{Pa(k)}}{x_k -x_{Pa(k)}} \right)
+$$
+
+Where $k$ denotes a particular keypoint other than the "root" of the keypoint tree (the nose) and $Pa(k)$ denotes the parent keypoint of $k$. An average of the confidence rating $c$ between $k$ and $Pa(k)$ is taken to form a new 2-tuple $(\theta, c)$ for all 24 of the non-root keypoints, which contains 48 numbers in total.
 
 \subsection{Architecture}
 
-\begin{figure}
-\centering
-\includegraphics[scale=0.3]{kpNetwork}
-\caption{The keypoints network (BLACkp)}
-\includegraphics[scale=0.3]{angleNetwork}
-\caption{The invariant form network (BLACangle)}
-\includegraphics[scale=0.4]{mixedNetwork}
-\caption{The mixed network (BLACkpangle)}
-\end{figure}
+\subsubsection{Models}
 
-We introduce the general architecture of the overall pipeline in this section. The novel and primary goal of the present work is to assign affective labels with learned patterns in body langauge. However, as we are only in the primary stage in this pursuit and we do not have a comprehensive method toward accounting for viewpoint invariance, using body posture as the primary is not very realistic. In the present work we use body language mainly as a supplement to existing facial affective labels if it is detected.
+Since we are starting with testing the hypothesis that using keypoint estimation is a feasible approach as opposed to convolutional filtering, we begin with na\"ive model architectures. To begin with, we are going to work with three different feature sets: estimated keypoints, invariant form and a concatenation of the two. Each of these feature sets will correspond to a neural network that has the same structure except for the input layer. 
 
-A snapshot is taken from an arbitrary visual stream and the resulting image is passed into OpenPose to detect all persons. For each person: (1) If a face was found, then it is passed into a face-based classifier for an evaluation of the affective rating vector based solely on face. (2) If a body was found, then it is passed into a body language-based classifier for an evaluation of the affective rating vector based solely on body. A weighted sum is computed between (1) and (2) for each person. If only one of (1) or (2) is found, then only that one is taken. A grand total is calculated by summing over every person's weighted sum of affective labels. The grand total will be passed into a softmax function to obtain a probability vector of the model prediction. A graphical depiction of this overall process is shown in Figure 1.
+The BLACkp network takes in the estimated keypoints, the BLACangle network takes in the invariant form of the keypoints, and the BLACkpangle takes in the concatenation of the inputs to the BLACkp and the BLACangle networks. All three BLAC* networks have two hidden fully-connected layers of size 200 and then 128 neurons, and the output is 4 neurons. All the activation functions being used in the models are Rectified Linear Units (ReLU) with bias terms enabled at every layer.
 
-\subsubsection{Body Language Keypoint Estimation}
+%\begin{figure}[h]
+%\centering
+%\includegraphics[scale=0.25]{kpNetwork}
+%\caption{The keypoints network (BLACkp)}
+%\includegraphics[scale=0.25]{angleNetwork}
+%\caption{The invariant form network (BLACangle)}
+%\includegraphics[scale=0.25]{mixedNetwork}
+%\caption{The mixed network (BLACkpangle)}
+%\end{figure}
 
-To extract body keypoints, we used the OpenPose system produced by the CMU Perceptual Computing Laboratory \citep{cao2017realtime} \citep{simon2017hand} \citep{wei2016cpm}
+\subsubsection{Training}
 
-Openpose is a system the detects people in an image or video and finds the estimated location of several keypoints on their body, hands, and face. It is a capable of finding the keypoints of multiple people in the same image. Openposes’s	 basic algorithm finds each type of keypoint in all bodies at the same time and finds the connection between keypoints in a separate neural network. This program can take most image and video formats as inputs, such as jpeg, png, avi, and mp4 formats. It will output in a variety of formats depending on the flags given. For example, it can output an image with the skeletons overlaid on the people in the image, and output json files for the keypoints. In the json file, it contains the x, y coordinates of every bone detected, as well as a confidence rating for the position of each bone. Openpose can output the json in a variety of formats, such as grouping each x,y,c tuple into it’s own object. For our model, openpose is configured to output a json file containing a separate object for each bone and to normalize the coordinates to [-1,1]. Then we find the angles of each bone to ensure that the input values are position invarient
-
-\subsection{Data}
-For our dataset we contacted Beast for their dataset since they had previously created a dataset similar to what we needed for our experiment.  However, their dataset was not enough so we collected and manually labeled sample data from various online sources ranging from sports to news. We then manually labeled each sample to fit into our training model pipeline. Finally, we jittered the entire dataset to create similar but slightly varying data points. We did this by mirroring the images. We then took the dataset and ran it through a pretrained machine learning network called OpenPose which creates and approximate skeleton for the people in each of our data samples. OpenPose then returned Json file which included x and y values for each bone in the skeleton along with an associated confidence percentage. We then convert that into two distinct datasets in CSV for network processing. One of these datasets is simply a data converted and unaltered list of the bones and confidences, however the second data set is the calculated angle of each bone from it’s base. Finally the CSV files are connected together so that each row included information on all the bones that were found including position, joints and confidence levels.
-
-\subsection{Training}
-As the problem that the present model is trying to solve involve uncensored face along with body posture, it is particularly difficult to obtain relevant published datasets that are labelled and publicly available. Past research in this field involved manual construction of data from actors \citep{schindler2008recognizing}.
-
-To address this issue, we manually construct a dataset of unlabelled images of humans with visible face and body posture by using authors of this paper as actors as well as sources on the internet. The face and body are both clearly visible in the training images. The image will not be given a label when it is fed into the training pipeline in a pseudounsupervised learning paradigm. We describe the training pipeline as follows:
-
-
-The unlabelled image is first passed into OpenPose to obtain a set of posture keypoints (ie. a skeleton) of the human in the image, as well as a set of face keypoints. The face keypoints will be passed into an already trained face emotional classifier to give a ground truth affective label for the overall human in the image as informed by the face. The skeleton is then processed into an invariant form and used along with the affective label to train the body language affect classifier.
+-hardware
+-regularization or not
+-1000 epochs
 
 \section{Experiments}
 
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.5]{te_acc}
+\end{figure}
+
 \section{Conclusion}
 
-\subsection{Future Work}
-
-using a generalized linear model to deal with multiple persons instead of a simple sum
-
-fitting LSTM to generalize into videos
-
-accounting for Confidence in body keypoint measurements dynamically
+%discuss results
+%proves that GAN generation will be more informed when generating a sad person means generating a sad skeleton before generating a whole image
+%
+%\subsection{Future Work}
+%
+%Due to limited time we were not able to run cross validation as well as finetuning tradeoff parameters for L1 and L2 regularization.
+%
+%using a generalized linear model to deal with multiple persons instead of a simple sum
+%
+%fitting LSTM to generalize into videos
+%
+%accounting for Confidence in body keypoint measurements dynamically
+%
+%maybe should use different clases
 
 \section{Contributions}
 
-As with most group projects, each author of this paper contributed a considerable amount of work towards piecing together the project. Jack oversaw the project by organizing and delegating tasks for everyone as well as being the main composer of the paper and poster. Jack and James formulated the design of the overall pipeline for the models and for training the model. Karan worked with existing models for body posture keypoint extraction and implemented the top level program. Eric and James are the main contributors to data collection and piecing together a custom dataset for the project. Insoo and Jack worked on designing and implementing the model for mapping body keypoints to affective labels.
+As with most group projects, each author of this paper contributed a considerable amount of work towards piecing together the project. Jack oversaw the project by organizing and delegating tasks for everyone as well as being the main composer of the paper and poster \footnote{The poster can be found here: \url{https://www.researchgate.net/project/BLACKE}}. Jack and James formulated the theoretical groundwork in the project, Jack and Insoo then went forward with implementing the model and setting up the training environment.
+
+A considerable proportion of the effort went into this project belonged to piecing together a dataset that we can work with. We had the blessing of the Brain and Emotion laboratory in Maastricht University to use their datasets as part of our dataset \citep{de2011bodily}\citep{stienen2012computational}. Aside from the BEAST dataset, Eric and James took the lead in finding images online to include to the dataset and manually hand-labelling them where necessary. After the datset was complete, Gurkaran worked with OpenPose to extract keypoint information from the dataset as well as formulating and implementing the invariant forms for each datapoint. Insoo worked on taking the keypoint data and reorganizing it into a csv file that the models can take in. Eric and Karan worked on a live demo for the presentation.
 
 We would also like to thank Professor Angelica Lim for consultations and guidance toward the design and theoretical groundwork for the project.
 

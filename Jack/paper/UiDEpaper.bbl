@@ -5,6 +5,13 @@ Zhe Cao, Tomas Simon, Shih-En Wei, and Yaser Sheikh.
 \newblock Realtime multi-person 2d pose estimation using part affinity fields.
 \newblock In {\em CVPR}, 2017.
 
+\bibitem{de2011bodily}
+Beatrice De~Gelder and Jan Van~den Stock.
+\newblock The bodily expressive action stimulus test (beast). construction and
+  validation of a stimulus basis for measuring perception of whole body
+  expression of emotions.
+\newblock {\em Frontiers in psychology}, 2:181, 2011.
+
 \bibitem{li2018deep}
 Shan Li and Weihong Deng.
 \newblock Deep facial expression recognition: A survey.
@@ -15,6 +22,12 @@ Konrad Schindler, Luc Van~Gool, and Beatrice de~Gelder.
 \newblock Recognizing emotions expressed by body pose: A biologically inspired
   neural model.
 \newblock {\em Neural networks}, 21(9):1238--1246, 2008.
+
+\bibitem{shin2018pixels}
+Daeyun Shin, Charless~C Fowlkes, and Derek Hoiem.
+\newblock Pixels, voxels, and views: A study of shape representations for
+  single view 3d object shape prediction.
+\newblock {\em arXiv preprint arXiv:1804.06032}, 2018.
 
 \bibitem{simon2017hand}
 Tomas Simon, Hanbyul Joo, Iain Matthews, and Yaser Sheikh.
