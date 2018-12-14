@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.12.10)  13 DEC 2018 14:08
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.12.10)  14 DEC 2018 00:51
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -581,21 +581,21 @@ Package: cite 2015/02/27  v 5.5
 ) (./UiDEpaper.aux)
 \openout1 = `UiDEpaper.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
-LaTeX Font Info:    Try loading font information for T1+ptm on input line 31.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Try loading font information for T1+ptm on input line 30.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1ptm.fd
 File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
@@ -667,7 +667,7 @@ File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 \AtBeginShipoutBox=\box26
-Package hyperref Info: Link coloring OFF on input line 31.
+Package hyperref Info: Link coloring OFF on input line 30.
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 
@@ -676,15 +676,15 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
 \c@section@level=\count108
 )
-LaTeX Info: Redefining \ref on input line 31.
-LaTeX Info: Redefining \pageref on input line 31.
-LaTeX Info: Redefining \nameref on input line 31.
+LaTeX Info: Redefining \ref on input line 30.
+LaTeX Info: Redefining \pageref on input line 30.
+LaTeX Info: Redefining \nameref on input line 30.
 
 (./UiDEpaper.out) (./UiDEpaper.out)
 \@outlinefile=\write3
 \openout3 = `UiDEpaper.out'.
 
-LaTeX Info: Redefining \microtypecontext on input line 31.
+LaTeX Info: Redefining \microtypecontext on input line 30.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
@@ -727,13 +727,13 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <17.28> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 34.
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 33.
 
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-cmr.cfg
 File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman 
 (RS)
 )
-LaTeX Font Info:    Try loading font information for U+msa on input line 34.
+LaTeX Font Info:    Try loading font information for U+msa on input line 33.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
@@ -741,7 +741,7 @@ File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 34.
+LaTeX Font Info:    Try loading font information for U+msb on input line 33.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -750,8 +750,8 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <10> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 34.
-LaTeX Font Info:    Try loading font information for T1+cmtt on input line 34.
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 33.
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 33.
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
@@ -761,55 +761,60 @@ Package microtype Info: Loading generic settings for font family
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <12> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 35.
- [1
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 34.
+
+<schindlernet.png, id=92, 988.69376pt x 336.25626pt>
+File: schindlernet.png Graphic file (type png)
+ <use schindlernet.png>
+Package pdftex.def Info: schindlernet.png used on input line 54.
+(pdftex.def)             Requested size: 296.61041pt x 100.87766pt.
+
+[1
 
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-<schindlernet.png, id=89, 988.69376pt x 336.25626pt>
-File: schindlernet.png Graphic file (type png)
- <use schindlernet.png>
-Package pdftex.def Info: schindlernet.png used on input line 55.
-(pdftex.def)             Requested size: 296.61041pt x 100.87766pt.
-
-<kran.png, id=91, 319.1925pt x 350.30875pt>
+<kran.png, id=105, 319.1925pt x 350.30875pt>
 File: kran.png Graphic file (type png)
  <use kran.png>
-Package pdftex.def Info: kran.png used on input line 71.
+Package pdftex.def Info: kran.png used on input line 70.
 (pdftex.def)             Requested size: 127.67473pt x 140.12102pt.
- [2 <./schindlernet.png> <./kran.png (PNG copy)>] [3] [4]
+ [2 <./schindlernet.png> <./kran.png (PNG copy)>] [3]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [4]
 Package microtype Info: Loading generic settings for font family
 (microtype)             `cmtt' (encoding: OT1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 
-<te_acc.png, id=130, 462.528pt x 346.896pt>
+<te_acc.png, id=143, 462.528pt x 346.896pt>
 File: te_acc.png Graphic file (type png)
  <use te_acc.png>
-Package pdftex.def Info: te_acc.png used on input line 187.
+Package pdftex.def Info: te_acc.png used on input line 188.
 (pdftex.def)             Requested size: 231.26343pt x 173.44757pt.
 
-Underfull \vbox (badness 2894) has occurred while \output is active []
 
- [5 <./te_acc.png>] (./UiDEpaper.bbl)
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 218.
- [6]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 218.
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[5] [6 <./te_acc.png>] (./UiDEpaper.bbl)
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 242.
+ [7]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 242.
  (./UiDEpaper.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 218.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 218.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 242.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 242.
 Package rerunfilecheck Info: File `UiDEpaper.out' has not changed.
-(rerunfilecheck)             Checksum: 6BEE8C12F4608DDF6360DEF9993AF536;1093.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 218.
+(rerunfilecheck)             Checksum: 9227D85060E96A1F0A0E864144D079D6;1309.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 242.
  ) 
 Here is how much of TeX's memory you used:
- 8432 strings out of 494910
- 125906 string characters out of 6179835
- 241603 words of memory out of 5000000
- 11428 multiletter control sequences out of 15000+600000
- 41738 words of font info for 143 fonts, out of 8000000 for 9000
+ 8442 strings out of 494910
+ 126115 string characters out of 6179835
+ 241939 words of memory out of 5000000
+ 11434 multiletter control sequences out of 15000+600000
+ 41608 words of font info for 141 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
- 31i,8n,35p,862b,329s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 31i,8n,35p,862b,352s stack positions out of 5000i,500n,10000p,200000b,80000s
  </home/jack/.texmf-var/fonts/pk/ljfour/jknappen/ec/ectt0900.600pk>{/usr/shar
 e/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc} </home/jack/.texmf-var/fonts/
 pk/ljfour/jknappen/ec/ectt1000.600pk></usr/share/texlive/texmf-dist/fonts/type1
@@ -822,10 +827,10 @@ sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/sha
 re/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/ty
 pe1/urw/times/utmri8a.pfb>
-Output written on UiDEpaper.pdf (6 pages, 435939 bytes).
+Output written on UiDEpaper.pdf (7 pages, 446536 bytes).
 PDF statistics:
- 235 PDF objects out of 1000 (max. 8388607)
- 176 compressed objects within 2 object streams
- 38 named destinations out of 1000 (max. 500000)
- 23712 words of extra memory for PDF output out of 24883 (max. 10000000)
+ 273 PDF objects out of 1000 (max. 8388607)
+ 199 compressed objects within 2 object streams
+ 45 named destinations out of 1000 (max. 500000)
+ 23736 words of extra memory for PDF output out of 24883 (max. 10000000)
 

@@ -5,6 +5,12 @@ Zhe Cao, Tomas Simon, Shih-En Wei, and Yaser Sheikh.
 \newblock Realtime multi-person 2d pose estimation using part affinity fields.
 \newblock In {\em CVPR}, 2017.
 
+\bibitem{dachapally2017facial}
+Prudhvi~Raj Dachapally.
+\newblock Facial emotion detection using convolutional neural networks and
+  representational autoencoder units.
+\newblock {\em arXiv preprint arXiv:1706.01509}, 2017.
+
 \bibitem{de2011bodily}
 Beatrice De~Gelder and Jan Van~den Stock.
 \newblock The bodily expressive action stimulus test (beast). construction and

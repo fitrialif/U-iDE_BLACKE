@@ -19,13 +19,12 @@
 
 \title{BLACKE: Body Language Affect Classification by Keypoint Estimation}
 
-\author{
-  Undergrad-ient Descent Expedition: \\
-  Jack (Xiang) Zhou, Gurkaran Aujla, James Bie, Eric Gao, Insoo Rhee\\
-  Faculty of Applied Sciences\\
-  Simon Fraser University\\
-  Burnaby, Canada\\
-  \texttt{xza194@sfu.ca} \\
+\author{Jack (Xiang) Zhou, Gurkaran Aujla, James Bie, Eric Gao, Insoo Rhee\\
+	School of Computing Science, 	
+	Faculty of Applied Sciences\\
+	Simon Fraser University\\
+	Burnaby, Canada\\
+	\texttt{\{xza194, karana, jbie, emgao, ira3\}@sfu.ca} \\
 }
 
 \begin{document}
@@ -33,7 +32,7 @@
 \maketitle
 
 \begin{abstract}
-Current state of the art development in affective classification of people on visual modalities usually focuses on facial expression recognition (FER) but it has some shortcomings in its real world usage. The present work tackles the affective classification problem in body language by using keypoint estimation as a pre-processing step as opposed to previously used convolutional methods. Na\"ive neural network classifiers are trained to test for the plausibility of the approach and the approach was found to be plausible. The present approach implies a significant dimensionality reduction in classifiers needed to solve this problem.
+Current state of the art development in affective classification of people on visual modalities usually focuses on facial expression recognition (FER) but it has some shortcomings in its real world usage. The present approach tackles the affective classification problem in body language by using keypoint estimation as a pre-processing step as opposed to previously used convolutional methods. The approach is found to be plausible with na\"ive neural network classifiers trained over test data. Several implications and pointers to future work are discussed.
 \end{abstract}
 
 \section{Introduction}
@@ -72,7 +71,7 @@ The underlying motivation in play here is as follows: Suppose one is visually ob
 	\caption{The extracted keypoints of the person's body and face contain the same amount of semantic information regarding the person's emotional state as the full image. Image courtesy of one of our authors Gurkaran Aujla}
 \end{figure}
 
-We hypothesize that using a presentation of body posture is a feasible alternative to convolutional pre-processing for classifying emotional states based on just body language. The confirmation of this hypothesis would imply a significant dimensionality reduction to the input data needed for a classifier model, and that leads to more compact models and faster training times along with other implications.
+We hypothesize that using a presentation of body posture is a feasible alternative to convolutional pre-processing for classifying emotional states based on just body language. The confirmation of this hypothesis would imply a significant dimensionality reduction to the input data needed for a classifier model, which leads to more compact models and faster training times along with other implications.
 
 \subsection{Keypoint Estimation}
 
@@ -92,18 +91,7 @@ The ability to account for the inverse projection problem and ultimately achievi
 
 In this section we describe various considerations and challenges toward setting up our models and the overall approach, and the steps taken to account for them.
 
-\subsection{Data}
-
-\subsubsection{Dataset Composition}
-Constructing a dataset was a non-trivial task as it is difficult to find datasets that have faces, full body, and is labelled in a uniform manner. Previous work in this field involved manual construction of data from actors \citep{schindler2008recognizing}. For the current work we are piecing together a dataset from various sources. However, since only the posture information will remain, the colorization, image dimensions, and actor identity are not preserved.
-
-We used the BEAST dataset \citep{de2011bodily} from the Brain and Emotion Laboratory in Maastricht University which had labelled grayscale images of individuals with their face censored. Images in this dataset are categorized into four emotional categories: Happy, Sad, Angry, and Fearful. We also obtained another dataset from the same laboratory which had the same type of data but colored and larger to include in the dataset that we are piecing together \citep{stienen2012computational}.
-
-Due to the fact that a dominant section of our dataset is standardized and has only four emotional categories, we restricted the amount of classes available in our dataset to be four as well.
-
-From there onwards, the team found suitable images of people online by various means such as image search engines and news articles. The sampled images are then carefully hand-labelled. In order to generate more datapoints, we applied jittering techniques and reflections to transform the data that we already have to achieve a total of 1345 datapoints.
-
-\subsubsection{Pre-processing}
+\subsection{Data Pre-processing}
 
 To prepare any piece of data for the classifiers that we are going to train, the input image has to be fed through OpenPose first to extract a skeleton from the image. One particular advantage to using the Keypoint Estimation approach is that the input dimensions of the image and format do not matter; the output is invariant regardless of these factors. We chose to use the BODY\_25 model which contains 25 body keypoints, as shown in Table 1.
 
@@ -154,9 +142,9 @@ Where $k$ denotes a particular keypoint other than the "root" of the keypoint tr
 
 Since we are starting with testing the hypothesis that using keypoint estimation is a feasible approach as opposed to convolutional filtering, we begin with na\"ive model architectures.
 
-To begin with, we are going to work with three different feature sets: estimated keypoints, invariant form and a concatenation of the two. Each of these feature sets will correspond to a neural network that has the same structure except for the input layer. 
+We are going to work with three different feature sets: estimated keypoints, invariant form and a concatenation of the two. Each of these feature sets will correspond to a neural network that has the same structure except for the input layer. 
 
-The BLACkp network takes in the estimated keypoints, the BLACangle network takes in the invariant form of the keypoints. Lastly, since it is usually the case that more features leads to better models, we also introduce the BLACkpangle model that takes in the concatenation of the inputs to BLACkp and BLACangle. All three BLAC* networks have two fully-connected hidden layers of size 200 and then 128 neurons, the output is 4 neurons for the 4 emotional classes that we have in our dataset. All the activation functions being used in the models are Rectified Linear Units (ReLU) with bias terms enabled at every layer.
+The BLACkp network takes in the estimated keypoints, the BLACangle network takes in the invariant form of the keypoints. Lastly, since it is usually the case that more features leads to better models, we also introduce the BLACkpangle model that takes in the concatenation of the inputs to BLACkp and BLACangle. All three BLAC* networks have two fully-connected hidden layers of size 200 and then 128 neurons, the output is 4 neurons for the four emotional classes that we have in our dataset. All the activation functions being used in the models are Rectified Linear Units (ReLU) with bias terms enabled at every layer. The choice for the sizes of the hidden layers are rather arbitrary but it is slightly motivated from other work being done in FER literature \citep{dachapally2017facial}.
 
 %\begin{figure}[h]
 %\centering
@@ -170,6 +158,17 @@ The BLACkp network takes in the estimated keypoints, the BLACangle network takes
 
 \section{Experiments}
 
+\subsection{Data}
+
+\subsubsection{Dataset Composition}
+Constructing a dataset was a non-trivial task as it is difficult to find datasets that have faces, full body, and is labelled in a uniform manner. Previous work in this field involved manual construction of data from actors \citep{schindler2008recognizing}. For the current work we are piecing together a dataset from various sources. However, since only the posture information will remain, the colorization, image dimensions, and actor identity are not preserved.
+
+We used the BEAST dataset \citep{de2011bodily} from the Brain and Emotion Laboratory in Maastricht University which had labelled grayscale images of individuals with their face censored. Images in this dataset are categorized into four emotional categories: Happy, Sad, Angry, and Fearful. We also obtained another dataset from the same laboratory which had the same type of data but colored and larger to include in the dataset that we are piecing together \citep{stienen2012computational}.
+
+Due to the fact that a dominant section of our dataset is standardized and has only four emotional categories, we restricted the amount of classes available in our dataset to be four as well.
+
+From there onwards, the team found suitable images of people online by various means such as image search engines and news articles. The sampled images are then carefully hand-labelled. In order to generate more datapoints, we applied jittering techniques and reflections to transform the data that we already have to achieve a total of 1345 datapoints.
+
 \subsection{Training}
 
 To begin, we have three main models BLACkp, BLACangle, and BLACkpangle. The criterion used is the cross entropy error function, and for every model we apply stochastic gradient descent (SGD) as the optimizer on batch sizes of 5 datapoints each. The learning rate for the SGD algorithm is inversely proportional to the current epoch (ie. $\eta = 1/\mathtt{EPOCH}$) so it decays and we can prevent overstepping minimas in the error surface.  For each model, we also try to train with L2-regularization appended to the cross entropy optimizer. In total, we have 6 models that we are training.
@@ -182,31 +181,56 @@ The training environment mainly consisted of a Intel Quad-Core i7-6700 with GPU 
 
 \subsection{Results}
 
+As we are only concerned about the performance of the models that we are training, only data on test accuracy is collected, training accuracy and loss over epochs are omitted. The plot of test accuracy progression over training epochs can be seen in Figure 3, and the final results in numbers can be found in Table 2. We found the test accuracy of the BLACkp network subject to L2-Regularization performing the best of all the networks with a test accuracy of 85\%. 
+
 \begin{figure}[h]
 \centering
 \includegraphics[scale=0.5]{te_acc}
+\caption{The test accuracy of all the models trained}
 \end{figure}
+
+\begin{table}[h]
+	\caption{Test Accuracies of BLAC* Networks}
+	\centering
+	\begin{tabular}{c|ccc}
+	\toprule
+	& BLACkp & BLACangle & BLAkpangle \\
+	\midrule	
+	No Regularization & 84\% & 73\% & 80\%\\
+	\midrule
+	L2-Regularization & 85\% & 75\% & 79\%\\
+	\end{tabular}
+\end{table}
+
+\subsubsection{Internal Comparisons}
+
+Regularization did not have a noticeable effect (the only observed differences are to the order of at most 2\%). This means that the model is not actively overfitting, passive overfitting may be happening regardless, but we do not know as data was not collected on training accuracy. The size of the dataset is sufficient for our task at hand, and for future work regularization would not be necessary unless the newly proposed architectures are vastly different.
+
+Overall, using estimated keypoints as inputs to a classifier yielded the best results. The combined features network (BLACkpangle) did not perform as well but it did perform better than the network that took our proposed invariant form as inputs.
+
+While regularization did not have a noticeable effect on the model accuracy, we can clearly see that taking in different input features does have an effect on the overall accuracy of the network. This has various implications with the approach that we are taking.
+
+Firstly, this calls for a more informed transformation than the one that we have described. The transformation that we have described accounts for some but not all of the issues outlined in section 1.4 and 2.2, and theoretically it should perform better than using solely estimated keypoints because it ought to address some issues that plain keypoints do not.
+
+It is worthy to note that we also tried to run all three networks subject to L1-Regularization, but we were met with inexplicable errors leading to overwhelmingly underperforming networks. The test accuracy when networks were subject to L1-regularization dropped significantly after roughly 200 epochs down to baseline performance or lower. For simplicity's sake we decided to not include the related results.
+
+\subsubsection{External Comparisons}
+
+As we are working on different output classes as the ones introduced in \citep{schindler2008recognizing}, we take the marginal test accuracy over all emotional classes of Schindler 2008 as a mode of comparison. The marginal accuracy of the model proposed in Shindler et al. 2008 was 82\%, which was slightly below the testing accuracy of our BLACkp network when subjected to L2-Regularization (85\%).
+
+From this we can confirm our hypothesis and conclude that using keypoint estimation as a means to pre-processing is a feasible alternative to convolutional filtering.
 
 \section{Conclusion}
 
-%discuss results
-%proves that GAN generation will be more informed when generating a sad person means generating a sad skeleton before generating a whole image
-%
-%\subsection{Future Work}
-%
-%Due to limited time we were not able to run cross validation as well as finetuning tradeoff parameters for L1 and L2 regularization.
-%
-%using a generalized linear model to deal with multiple persons instead of a simple sum
-%
-%fitting LSTM to generalize into videos
-%
-%accounting for Confidence in body keypoint measurements dynamically
-%
-%maybe should use different clases
+In the present work we have shown that using keypoint estimation as a preprocessing step is a plausible alternative approach to solving the body language affect classification problem.
+
+\subsection{Future Work}
+
+There is lots more work to be done in this area, especially stemming from work that we have done. Due to time constraint we were not able to run cross-validation as well as finetuning the tradeoff parameter for model regularization. A comprehensive and standardized dataset also needs to be constructed for this problem for future models to be trained effectively. We still firmly believe that an invariant form representation of body language will be able to outperform plain keypoints, so a better and more informed transformation is left as future work.
 
 \section{Contributions}
 
-As with most group projects, each author of this paper contributed a considerable amount of work towards piecing together the project. Jack oversaw the project by organizing and delegating tasks for everyone as well as being the main composer of the paper and poster \footnote{The poster can be found here: \url{https://www.researchgate.net/project/BLACKE}}. Jack and James formulated the theoretical groundwork in the project, Jack and Insoo then went forward with implementing the model and setting up the training environment.
+As with most group projects, each author of this paper contributed a considerable amount of work towards piecing together the project. Jack oversaw the project by organizing and delegating tasks for everyone as well as being the main composer of the paper and poster \footnote{The poster can be found here: \url{https://www.researchgate.net/project/BLACKE}}. After Jack and James formulated the theoretical groundwork in the project, Jack and Insoo went forward with implementing the model and setting up the training environment.
 
 A considerable proportion of the effort went into this project belonged to piecing together a dataset that we can work with. We had the blessing of the Brain and Emotion laboratory in Maastricht University to use their datasets as part of our dataset \citep{de2011bodily}\citep{stienen2012computational}. Aside from the BEAST dataset, Eric and James took the lead in finding images online to include to the dataset and manually hand-labelling them where necessary. After the datset was complete, Gurkaran worked with OpenPose to extract keypoint information from the dataset as well as formulating and implementing the invariant forms for each datapoint. Insoo worked on taking the keypoint data and reorganizing it into a csv file that the models can take in. Eric and Karan worked on a live demo for the presentation.
 
