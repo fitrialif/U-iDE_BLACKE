@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.12.10)  14 DEC 2018 00:51
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.12.10)  14 DEC 2018 20:52
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -762,59 +762,69 @@ Package microtype Info: Loading generic settings for font family
 (microtype)             See the microtype manual for details.
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <12> not available
 (Font)              Font shape `T1/ptm/b/n' tried instead on input line 34.
-
-<schindlernet.png, id=92, 988.69376pt x 336.25626pt>
-File: schindlernet.png Graphic file (type png)
- <use schindlernet.png>
-Package pdftex.def Info: schindlernet.png used on input line 54.
-(pdftex.def)             Requested size: 296.61041pt x 100.87766pt.
-
-[1
+ [1
 
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-<kran.png, id=105, 319.1925pt x 350.30875pt>
+<schindlernet.png, id=93, 988.69376pt x 336.25626pt>
+File: schindlernet.png Graphic file (type png)
+ <use schindlernet.png>
+Package pdftex.def Info: schindlernet.png used on input line 56.
+(pdftex.def)             Requested size: 395.4705pt x 134.5001pt.
+
+<kran.png, id=95, 319.1925pt x 350.30875pt>
 File: kran.png Graphic file (type png)
  <use kran.png>
-Package pdftex.def Info: kran.png used on input line 70.
-(pdftex.def)             Requested size: 127.67473pt x 140.12102pt.
- [2 <./schindlernet.png> <./kran.png (PNG copy)>] [3]
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Package pdftex.def Info: kran.png used on input line 72.
+(pdftex.def)             Requested size: 143.63528pt x 157.63748pt.
 
- [4]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[2 <./schindlernet.png>]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[3 <./kran.png (PNG copy)>]
+Underfull \hbox (badness 2197) in paragraph at lines 133--134
+[]\T1/ptm/m/n/10 (+20) We de-fine a map-ping from a key-point tu-ple $\OT1/cmr/
+m/n/10 (\OML/cmm/m/it/10 x[]; y[]; c[]\OT1/cmr/m/n/10 )$ \T1/ptm/m/n/10 (+20) a
+nd its par-ent key-point tu-ple
+ []
+
+[4]
 Package microtype Info: Loading generic settings for font family
 (microtype)             `cmtt' (encoding: OT1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-
-<te_acc.png, id=143, 462.528pt x 346.896pt>
+ <te_acc.png, id=136, 462.528pt x 346.896pt>
 File: te_acc.png Graphic file (type png)
  <use te_acc.png>
-Package pdftex.def Info: te_acc.png used on input line 188.
-(pdftex.def)             Requested size: 231.26343pt x 173.44757pt.
+Package pdftex.def Info: te_acc.png used on input line 175.
+(pdftex.def)             Requested size: 351.51787pt x 263.6384pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 [5] [6 <./te_acc.png>] (./UiDEpaper.bbl)
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 242.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 229.
  [7]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 242.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 229.
  (./UiDEpaper.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 242.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 242.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 229.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 229.
 Package rerunfilecheck Info: File `UiDEpaper.out' has not changed.
-(rerunfilecheck)             Checksum: 9227D85060E96A1F0A0E864144D079D6;1309.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 242.
+(rerunfilecheck)             Checksum: F5DAB4B6E4E3BEC4B3F85563F7DF478B;1164.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 229.
  ) 
 Here is how much of TeX's memory you used:
- 8442 strings out of 494910
- 126115 string characters out of 6179835
- 241939 words of memory out of 5000000
- 11434 multiletter control sequences out of 15000+600000
- 41608 words of font info for 141 fonts, out of 8000000 for 9000
+ 8435 strings out of 494910
+ 126011 string characters out of 6179835
+ 242709 words of memory out of 5000000
+ 11432 multiletter control sequences out of 15000+600000
+ 41478 words of font info for 139 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
- 31i,8n,35p,862b,352s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 31i,8n,35p,862b,327s stack positions out of 5000i,500n,10000p,200000b,80000s
  </home/jack/.texmf-var/fonts/pk/ljfour/jknappen/ec/ectt0900.600pk>{/usr/shar
 e/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc} </home/jack/.texmf-var/fonts/
 pk/ljfour/jknappen/ec/ectt1000.600pk></usr/share/texlive/texmf-dist/fonts/type1
@@ -823,14 +833,15 @@ c/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsf
 onts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
 /cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.p
 fb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></u
-sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/sha
-re/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texm
-f-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/ty
-pe1/urw/times/utmri8a.pfb>
-Output written on UiDEpaper.pdf (7 pages, 446536 bytes).
+sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/shar
+e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texl
+ive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/
+fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw
+/times/utmri8a.pfb>
+Output written on UiDEpaper.pdf (7 pages, 452672 bytes).
 PDF statistics:
- 273 PDF objects out of 1000 (max. 8388607)
- 199 compressed objects within 2 object streams
- 45 named destinations out of 1000 (max. 500000)
- 23736 words of extra memory for PDF output out of 24883 (max. 10000000)
+ 269 PDF objects out of 1000 (max. 8388607)
+ 194 compressed objects within 2 object streams
+ 43 named destinations out of 1000 (max. 500000)
+ 23720 words of extra memory for PDF output out of 24883 (max. 10000000)
 
