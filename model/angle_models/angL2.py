@@ -13,11 +13,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import confusion_matrix
 import itertools
 
-import matplotlib.pyplot as plt
-overall_loss = []
-
 from model import *
-from tools import *
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
@@ -79,8 +75,6 @@ def train(epoch):
                 100. * batch_ind/len(trainloader), loss.data
             ))
 
-    overall_loss.append(np.mean(epoch_loss))
-
 def test():
     model.eval()
     test_loss = 0
@@ -109,40 +103,10 @@ def test():
         test_loss, correct, len(testloader.dataset), accuracy
     ))
 
-    return torch.FloatTensor(t_predictions), accuracy
+    return torch.FloatTensor(t_predictions)
 
-accuracies = []
 
 ## TRAINING
 for epoch in range(1,1000):
     train(epoch)
-    _,accuracy = test()
-    accuracies.append(accuracy)
     torch.save(model.state_dict(),'angL2.pt') # make .pt file have different names
-
-## LOSS
-plt.figure()
-plt.title("loss over epochs")
-plt.plot(overall_loss)
-plt.savefig("angL2_loss.png")
-
-## accuracies
-plt.figure()
-plt.title("accuracy over epochs")
-plt.plot(accuracies)
-plt.savefig("angL2_acc.png")
-
-## Confusion Matrix
-t_pred,_ = test()
-torch.reshape(t_pred,(-1,))
-cnf_matrix = confusion_matrix(np.asarray(t_te), t_pred)
-plt.figure()
-class_names=("angry","fear","happy","sad")
-plot_confusion_matrix(cnf_matrix, classes=class_names, normalize=True,
-                      title='Confusion Matrix')
-plt.savefig("angL2_conf.png")
-
-# plt.show()
-
-with open("angL2_acc.blacke","w") as f:
-    f.write(str(accuracies))
