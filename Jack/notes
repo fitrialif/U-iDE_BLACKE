@@ -1,0 +1,25 @@
+APPROACH:
+
+FETCH ALGORITHMS SO THAT WE CAN BUILD THE PIPELINE
+
+ALGORITHMS THAT WE CAN USE
+
+## extract relevant parts for making pose estimation possible for just us
+https://github.com/CMU-Perceptual-Computing-Lab/openpose
+
+## fun one, might be useable
+https://github.com/JostineHo/mememoji
+
+## face recognition ones:
+https://github.com/petercunha/Emotion
+https://github.com/SamVenkatesh/FakeBlock
+https://github.com/oarriaga/face_classification
+
+
+https://medium.com/pixel-wise/real-time-pose-estimation-in-webcam-using-openpose-python-2-3-opencv-91af0372c31c
+ 
+try to get openpose working on my own laptop first
+ 
+https://github.com/CMU-Perceptual-Computing-Lab/openpose/blob/master/doc/installation.md#python-api
+ 
+https://github.com/CMU-Perceptual-Computing-Lab/openpose/blob/master/python/openpose/openpose.py
